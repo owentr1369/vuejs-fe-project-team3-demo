@@ -37,18 +37,21 @@
 <script>
 export default {
   data() {
-    return {
-      isExpanded: true,
-    };
+    return {};
   },
   watch: {
     isExpanded() {
       const sidebar = document.querySelector(".sidebar");
-      if (this.isExpanded == false) {
-        sidebar.classList.add("unexpanded");
-      } else {
+      if (!this.$store.state.sidebarClose) {
         sidebar.classList.remove("unexpanded");
+      } else {
+        sidebar.classList.add("unexpanded");
       }
+    },
+  },
+  computed: {
+    isExpanded() {
+      return !this.$store.state.sidebarClose;
     },
   },
 };

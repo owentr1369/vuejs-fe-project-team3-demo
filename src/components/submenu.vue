@@ -1,23 +1,16 @@
 <template>
   <div class="submenu">
-    <button class="submenu_button">
+    <button @click="toggleSidebar" class="submenu_button">
       <img src="@/assets/svg/burger-menu.svg" alt="" />
     </button>
     <div class="submenu_main">
-      <div class="shopify">
+      <div @click="openModal" class="shopify">
         <img
           class="shopify_image"
           src="@/assets/svg/shopify-green-rounded.svg"
         />
-        <span class="shopify_name">Lotusprayer</span>
-        <!-- <img src="@/assets/svg/arrow-down.svg" alt="" class="shopify_arrow" /> -->
-      </div>
-      <div class="user">
-        <!-- <img src="@/assets/svg/avatar.svg" alt="" class="user_avatar" /> -->
-        <button class="logout" @click="logout">
-          <span>Log out</span>
-          <img src="@/assets/svg/logout.svg" alt="" />
-        </button>
+        <span class="shopify_name">BaobaoStore</span>
+        <img src="@/assets/svg/angle-down.svg" alt="" class="shopify_arrow" />
       </div>
     </div>
   </div>
@@ -26,11 +19,15 @@
 <script>
 export default {
   name: "Submenu",
+  data() {
+    return {};
+  },
   methods: {
-    logout() {
-      document.cookie =
-        "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      this.$router.go({ name: "Login" });
+    openModal() {
+      this.$emit(toggleSidebar);
+    },
+    toggleSidebar() {
+      this.$store.commit("toggleSidebar");
     },
   },
 };
@@ -47,18 +44,19 @@ export default {
     background: transparent;
     border: none;
     padding-left: 20px;
+    cursor: pointer;
   }
   &_main {
     display: flex;
     .shopify {
-      padding-left: 15px;
+      padding: 16px 18px 16px 22px;
       border-left: 1px solid #f3f3f3;
       border-right: 1px solid #f3f3f3;
-      padding-right: 18px;
       display: flex;
       align-items: center;
+      cursor: pointer;
       &_image {
-        margin-right: 9px;
+        margin-right: 6px;
         width: 36px;
         height: 36px;
       }
@@ -68,44 +66,6 @@ export default {
         line-height: 17px;
         color: #252627;
         margin-right: 4px;
-      }
-    }
-    .user {
-      margin: 9px 17px 9px 15px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      &_avatar {
-        width: 32px;
-        height: 32px;
-      }
-      .logout {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        width: 100px;
-        height: 46px;
-        top: 30px;
-        left: -55px;
-        background: #fff;
-        border: 1px solid #ebebf0;
-        box-shadow: 0px 8px 12px rgba(61, 90, 153, 0.15);
-        border-radius: 6px;
-        display: none;
-        cursor: pointer;
-        span {
-          text-decoration: underline;
-        }
-        img {
-          margin-left: 8px;
-          width: 14px;
-          height: 14px;
-          object-fit: cover;
-        }
-      }
-      &:hover .logout {
-        display: block;
       }
     }
   }
