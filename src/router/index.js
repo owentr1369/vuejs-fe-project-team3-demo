@@ -9,10 +9,34 @@ const routes = [
     path: "/",
     name: "Home",
     meta: {
-      middleware: [Auth],
+      // middleware: [Auth],
     },
     component: () =>
       import(/* webpackChunkName: "default" */ "@/layouts/home.vue"),
+    children: [
+      {
+        path: "customers",
+        name: "Customers",
+        meta: {
+          // middleware: [Auth],
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "default" */ "@/modules/customers/views/customers.vue"
+          ),
+      },
+      {
+        path: "campaign",
+        name: "Campaign",
+        meta: {
+          // middleware: [Auth],
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "default" */ "@/modules/campaign/views/campaign.vue"
+          ),
+      },
+    ],
   },
   // auth
   {

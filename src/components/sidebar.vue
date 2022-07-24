@@ -15,11 +15,11 @@
         style="margin-bottom: 24.22px; margin-top: 22.22px"
       />
       <div class="tabs">
-        <router-link to="#" class="tab active">
+        <router-link :to="{ name: 'Customers' }" class="tab active">
           <img src="@/assets/svg/customer.svg" alt="" class="tab-icon" />
           <span v-if="isExpanded">Customers</span>
         </router-link>
-        <router-link to="#" class="tab">
+        <router-link :to="{ name: 'Campaign' }" class="tab">
           <img src="@/assets/svg/campaign.svg" alt="" class="tab-icon" />
           <span v-if="isExpanded">Campaign</span>
         </router-link>
