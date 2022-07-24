@@ -1,58 +1,57 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app" class="vue-layout-auth">
-    <div class="vue-layout-auth-content">
-      <div class="vue-layout-auth-content-header">
-        <img src="@/assets/images/logo.svg" alt="">
+    <div class="auth">
+      <router-link :to="{ name: 'Home' }" class="logo">
+        <img src="../assets/svg/Logo.svg" alt="Logo" />
+      </router-link>
+      <div class="body">
+        <router-view></router-view>
       </div>
-      <div class="vue-layout-auth-content-body">
-        <div class="vue-layout-auth-content-wrapper">
-          <router-view/>
-        </div>
-      </div>
-    </div>
-    <div class="vue-layout-auth-aside">
-      <div class="vue-layout-auth-aside-image">
-        <img src="@/assets/images/art_work.svg" alt="">
+      <div class="artwork">
+        <img class="artwork_image" src="../assets/svg/art_work.svg" alt="" />
       </div>
     </div>
-    
   </div>
 </template>
 
+<script>
+export default {
+  name: "Auth",
+};
+</script>
 <style lang="scss">
-  .vue-layout-auth{
+.auth {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f8ff;
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+  .body {
+    margin-left: 18%;
+  }
+  .artwork {
+    display: flex;
+    align-items: center;
+    width: 34%;
     min-height: 100vh;
-    width: 100%;
-    position: relative;
-    &-content{
-      width: 60%;
-      float: left;
-      &-header{
-        padding: 30px;
-      }
-      &-body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: calc(100vh - 100px);
-      }
-      &-wrapper{
-        max-width: 400px;
-        margin: 0 auto;
-      }
-    }
-    &-aside{
-      width: 40%;
-      float: left;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: #CCDCFF;
-    }
-    &:after{
-      content : '';
-      clear: both;
-      display: table;
+    background: linear-gradient(
+        181.62deg,
+        rgba(255, 255, 255, 0.56) 12.9%,
+        rgba(255, 255, 255, 0.2) 108.61%
+      ),
+      #ccdcff;
+    box-shadow: 0px 12px 20px #ebf1ff;
+    &_image {
+      margin-left: -40%;
     }
   }
+}
 </style>

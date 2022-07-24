@@ -5,9 +5,21 @@
 </template>
 
 <script>
-import VueExtendLayouts from 'vue-extend-layout'
+import VueExtendLayouts from "vue-extend-layout";
+
 export default {
-  name: 'App',
-  components: { VueExtendLayouts }
-}
+  name: "App",
+  components: { VueExtendLayouts },
+  mounted() {
+    // fetchUser from Api
+    this.$store.dispatch("fetchUser");
+  },
+  created() {},
+};
 </script>
+
+<style lang="scss">
+#app {
+  min-height: 100vh;
+}
+</style>
