@@ -5,12 +5,15 @@
     </button>
     <div class="submenu_main">
       <div class="shopify">
-        <img class="shopify_image" src="@/assets/svg/shopify-with-circle.svg" />
+        <img
+          class="shopify_image"
+          src="@/assets/svg/shopify-green-rounded.svg"
+        />
         <span class="shopify_name">Lotusprayer</span>
-        <img src="@/assets/svg/arrow-down.svg" alt="" class="shopify_arrow" />
+        <!-- <img src="@/assets/svg/arrow-down.svg" alt="" class="shopify_arrow" /> -->
       </div>
       <div class="user">
-        <img src="@/assets/svg/avatar.svg" alt="" class="user_avatar" />
+        <!-- <img src="@/assets/svg/avatar.svg" alt="" class="user_avatar" /> -->
         <button class="logout" @click="logout">
           <span>Log out</span>
           <img src="@/assets/svg/logout.svg" alt="" />

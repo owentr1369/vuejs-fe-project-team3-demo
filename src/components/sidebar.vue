@@ -1,138 +1,156 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="sidebar">
     <div class="sidebar-top">
-      <div class="logo">
-        <img src="@/assets/svg/Logo.svg" alt="" />
+      <img
+        v-if="isExpanded"
+        src="@/assets/images/Logo-light.png"
+        alt=""
+        class="logo"
+      />
+      <img
+        v-else
+        src="@/assets/images/single-icon.png"
+        alt=""
+        class="logo"
+        style="margin-bottom: 24.22px; margin-top: 22.22px"
+      />
+      <div class="tabs">
+        <router-link to="#" class="tab active">
+          <img src="@/assets/svg/customer.svg" alt="" class="tab-icon" />
+          <span v-if="isExpanded">Customers</span>
+        </router-link>
+        <router-link to="#" class="tab">
+          <img src="@/assets/svg/campaign.svg" alt="" class="tab-icon" />
+          <span v-if="isExpanded">Campaign</span>
+        </router-link>
       </div>
-      <nav class="menu">
-        <router-link class="menu_item" :to="{ name: 'Dashboard' }">
-          <img src="@/assets/svg/clock.svg" alt="" class="menu_item-icon" />
-          <span class="menu_item-text">Dashboard</span>
-        </router-link>
-        <router-link class="menu_item" :to="{ name: 'Products' }">
-          <img src="@/assets/svg/box.svg" alt="" class="menu_item-icon" />
-          <span class="menu_item-text">Products</span>
-        </router-link>
-        <router-link class="menu_item" :to="{ name: 'Stores' }">
-          <img src="@/assets/svg/store.svg" alt="" class="menu_item-icon" />
-          <span class="menu_item-text">Stores</span>
-        </router-link>
-        <router-link class="menu_item" :to="{ name: 'Settings' }">
-          <img src="@/assets/svg/setting.svg" alt="" class="menu_item-icon" />
-          <span class="menu_item-text">Settings</span>
-        </router-link>
-      </nav>
     </div>
     <div class="sidebar-bottom">
-      <router-link :to="{ name: 'Call' }">
-        <img src="@/assets/svg/headset.svg" alt="" />
-      </router-link>
-      <router-link :to="{ name: 'Chat' }">
-        <img src="@/assets/svg/chat.svg" alt="" />
-      </router-link>
-      <router-link :to="{ name: 'App' }">
-        <img src="@/assets/svg/gribblock.svg" alt="" />
-      </router-link>
+      <div class="support">
+        <img src="@/assets/svg/support.svg" alt="" />
+        <span v-if="isExpanded">Help center</span>
+      </div>
     </div>
   </div>
-</template> 
+</template>
 
 <script>
-export default {};
-</script>   
+export default {
+  data() {
+    return {
+      isExpanded: true,
+    };
+  },
+  watch: {
+    isExpanded() {
+      const sidebar = document.querySelector(".sidebar");
+      if (this.isExpanded == false) {
+        sidebar.classList.add("unexpanded");
+      } else {
+        sidebar.classList.remove("unexpanded");
+      }
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
-@import "@/styles/scss/index.scss";
+@import "@/assets/styles/scss/main";
 .sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(138.19deg, #003084 4.98%, #0294d7 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 230px;
-  height: 100vh;
-  background: $product-background;
-  border-right: 1px solid #e2e2e2;
+  transition: all 0.4s ease;
   &-top {
     width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     .logo {
-      width: 100%;
-      padding-top: 13px;
-      padding-left: 15px;
-      margin-bottom: 42px;
+      margin-top: 20px;
+      margin-bottom: 22px;
     }
-    .menu {
-      display: block;
+    .tabs {
       width: 100%;
-      &_item {
-        position: relative;
-        display: flex;
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+      .tab {
+        padding-top: 13px;
+        padding-bottom: 13px;
+        padding-left: 20px;
         text-decoration: none;
-        transition: all 0.1s ease-in;
-        &-icon {
-          margin-right: 12px;
+        color: #fff;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        opacity: 0.1;
+        transition: all 0.4s ease;
+        min-height: 50px;
+        img {
+          margin-right: 15px;
         }
-        &-text {
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 20px;
-          color: #4f4f4f;
-        }
+        &.active,
         &:hover {
-          background: #ebf1ff;
-          img {
-            filter: invert(58%) sepia(38%) saturate(4383%) hue-rotate(200deg)
-              brightness(92%) contrast(95%);
-          }
-          & > .menu_item-text {
-            color: $main-color;
-          }
-          &::after {
-            position: absolute;
+          opacity: 1;
+          position: relative;
+          &::before {
+            width: 5px;
             content: "";
-            background: $main-color;
-            width: 4px;
-            height: 40px;
-            border-radius: 0 6px 6px 0;
+            position: absolute;
+            height: 100%;
+            background: #fddd48;
+            border-radius: 0px 3px 3px 0px;
             left: 0;
             top: 0;
-            transition: all 0.1s ease-in;
-          }
-        }
-        &.router-link-exact-active {
-          background: #ebf1ff;
-          img {
-            filter: invert(58%) sepia(38%) saturate(4383%) hue-rotate(200deg)
-              brightness(92%) contrast(95%);
-          }
-          &::after {
-            content: "";
-            background: $main-color;
-            position: absolute;
-            width: 4px;
-            height: 40px;
-            border-radius: 0 6px 6px 0;
-            left: 0;
-            top: 0;
-          }
-          .menu_item-text {
-            color: $main-color;
           }
         }
       }
     }
   }
   &-bottom {
-    display: flex;
-    width: 200px;
-    align-self: center;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 1px solid #f3f3f3;
+    width: 100%;
+    color: #fff;
+    opacity: 0.5;
+    transition: all 0.4s ease;
+    .support {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+      min-height: 50px;
+      img {
+        padding: 13px 10px 13px 20px;
+      }
+      span {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+    }
+    &.active,
+    &:hover {
+      opacity: 1;
+      position: relative;
+      &::before {
+        width: 5px;
+        content: "";
+        position: absolute;
+        height: 100%;
+        background: #fddd48;
+        border-radius: 0px 3px 3px 0px;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  &.unexpanded {
+    width: 66px;
   }
 }
 </style>

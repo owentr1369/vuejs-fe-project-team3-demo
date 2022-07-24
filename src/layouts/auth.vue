@@ -1,17 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app" class="vue-layout-auth">
-    <div class="auth">
+    <!-- <div class="auth">
       <router-link :to="{ name: 'Home' }" class="logo">
-        <img src="../assets/svg/Logo.svg" alt="Logo" />
+        <img src="../assets/images/Logo-dark.png" alt="Logo" />
       </router-link>
-      <div class="body">
-        <router-view></router-view>
-      </div>
+      <div class="body"> -->
+    <router-view></router-view>
+    <!-- </div>
       <div class="artwork">
-        <img class="artwork_image" src="../assets/svg/art_work.svg" alt="" />
+        <img class="artwork_image" src="../assets/images/Art work.png" alt="" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
